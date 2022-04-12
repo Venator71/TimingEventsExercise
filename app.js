@@ -1,9 +1,10 @@
 // Q 1
 
 setTimeout(() => {
-    const h1 = document.querySelector(`h1`);
+    const h1 = document.querySelector(`#first`);
     const p1 = document.createElement(`p`);
-    h1.innerText = `first`
+    h1.innerText = `Hi`
+    h1.append(p1)
 }, 1000);
 
 
@@ -43,34 +44,36 @@ const end = document.querySelector(`button`);
 
  // Q4
 
-//  const clock = document.getElementById(`countdown`);
-//  const pcd = document.createElement(`p`);
-//  let num = 20
- 
 
- 
-//  const timer = setInterval(() => {
-//      if (num > 0){
-//          console.log(num);
+const startMin = 2;
+let time = startMin * 60;
 
-//      } else {
-//          console.log(num);
-//          clearInterval(timer);
-         
-//      } 
-
-//         clock.innerText = 'This is done'
-     
-//      num--;
-//      const minutes = Math.floor((num % (1000 * 60 * 60)) / (1000 * 60));
-//  const seconds = Math.floor((num % (1000 * 60)) / 1000);
-//      clock.innerText=`${num}`;
-//  },1000);
+let countdownEvent = document.querySelector(`#countdown`);
 
 
+let timer = setInterval(updateCountdown, 1000);
 
+function updateCountdown() {
+    const minutes = Math.floor(time / 60);
 
+    let seconds = time % 60;
 
+    seconds = seconds < 10 ? `0` + seconds : seconds;
+
+    countdownEvent.innerHTML = `${minutes}:${seconds}`;
+    
+        time--;
+    if (time === 0){
+
+        countdownEvent.innerHTML = `TIME IS UP!`
+        
+        clearInterval(timer);
+    };
+}
+
+//! reference https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
+
+//! and https://www.codegrepper.com/code-examples/javascript/javascript+countdown+timer+minutes%2C+seconds
 
 
 
